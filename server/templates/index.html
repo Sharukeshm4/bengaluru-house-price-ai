@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bengaluru Real Estate AI</title>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- PARALLAX BACKGROUND -->
+<div class="parallax-bg"></div>
+
+<!-- AI NETWORK -->
+<div class="neural"></div>
+
+<!-- GLASS CARD -->
+<div class="glass-card" id="card">
+    <h1>🏙️ Bengaluru Real Estate AI</h1>
+    <p class="subtitle">Predict. Analyze. Decide.</p>
+
+    <form action="/predict" method="post" onsubmit="startAI()">
+        <input type="number" step="any" name="total_sqft" placeholder="🏠 Total Sqft" required>
+        <input type="number" name="bath" placeholder="🛁 Bathrooms" required>
+        <input type="number" name="bhk" placeholder="🛏️ BHK" required>
+        <input type="text" name="location" placeholder="📍 Location" required>
+
+        <button type="submit">
+            <i class="fa-solid fa-microchip"></i> Run AI Prediction
+        </button>
+    </form>
+
+    {% if prediction_text %}
+    <div class="price-box">
+        <span>Estimated Value</span>
+        <div class="price" id="price">{{ prediction_text }}</div>
+    </div>
+    {% endif %}
+</div>
+
+<script src="{{ url_for('static', filename='js/ultimate.js') }}"></script>
+</body>
+</html>
